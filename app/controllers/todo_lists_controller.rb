@@ -1,28 +1,33 @@
 class TodoListsController < ApplicationController
   before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
+  before_action :hello_stephen, only: [:create, :delete, :show, :edit, :update, :destroy]
 
-  # GET /todo_lists
-  # GET /todo_lists.json
+# READ REST == GET (SERVE ME A HTML PAGE)
   def index
     @todo_lists = TodoList.all
   end
 
-  # GET /todo_lists/1
-  # GET /todo_lists/1.json
+# READ REST == GET (SERVE ME A HTML PAGE)
   def show
   end
 
-  # GET /todo_lists/new
+# READ REST == GET (SERVE ME A HTML PAGE)
   def new
     @todo_list = TodoList.new
   end
 
-  # GET /todo_lists/1/edit
+# READ REST == GET (SERVE ME A HTML PAGE)
   def edit
+    # nothing here?
+    # Before editing call the set_todo_list method at the bottom of the page
+    # def set_todo_list
+    #   @todo_list = TodoList.find(params[:id])
+    # end
+    # because of the following at the top od the page
+    # before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
   end
 
-  # POST /todo_lists
-  # POST /todo_lists.json
+# CREATE REST == POST (SEND ME DATA)
   def create
     @todo_list = TodoList.new(todo_list_params)
 
@@ -37,8 +42,7 @@ class TodoListsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /todo_lists/1
-  # PATCH/PUT /todo_lists/1.json
+# UPDATE  REST == PUT (SEND ME DATA)
   def update
     respond_to do |format|
       if @todo_list.update(todo_list_params)
@@ -51,10 +55,9 @@ class TodoListsController < ApplicationController
     end
   end
 
-  # DELETE /todo_lists/1
-  # DELETE /todo_lists/1.json
+# DELETE REST == DELETE (REMOVE ENTRY)
   def destroy
-    @todo_list.destroy
+    a
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'Todo list was successfully destroyed.' }
       format.json { head :no_content }
@@ -71,4 +74,10 @@ class TodoListsController < ApplicationController
     def todo_list_params
       params.require(:todo_list).permit(:title, :description)
     end
+
+    def hello_stephen
+      p "stephen says hi"
+    end
 end
+
+
